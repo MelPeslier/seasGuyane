@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>{{ cour.titre }}</h1>
-
+    <p>{{ cour.descriptionBreve }}</p>
     <p>{{ cour.description }}</p>
 
     <img src="{{ vich_uploader_asset(cour) }}" alt="{{ cour.imageName }}">

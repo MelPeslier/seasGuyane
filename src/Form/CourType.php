@@ -32,9 +32,24 @@ class CourType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 70])
                 ]
             ])
+            ->add('imageFondFile', VichImageType::class)
+            ->add('description_breve', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlenght' => '2',
+                    'maxlenght' => '300',
+                ],
+                'label' => 'Ajout de la description brève',
+                'label_attr' => [
+                    'class' => 'form_desc'
+                ],
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 2, 'max' => 300])
+                ]
+            ])
             ->add('description', TextType::class, [
                 'attr' => [
-                    'autofocus' => true,
                     'class' => 'form-control',
                     'minlenght' => '2',
                     'maxlenght' => '5000',
