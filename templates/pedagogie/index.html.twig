@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pedagogie{% endblock %}
+
+{% block body %}
+    <h1>Tous les cours</h1>
+
+        {% set cour_compteur = cours|length %}    
+
+        {{ cour_compteur }}
+        
+        <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
+
+        {% for cour in cours %}
+            <article>
+                <h1><a href=" {{ path('app_pedagogie_affiche', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h1>
+                <p> {{ cour.description() }} </p>
+            </article>
+        {% else %}
+            <p>Pas encore de cours !</p>
+        {% endfor %}
+{% endblock %}
