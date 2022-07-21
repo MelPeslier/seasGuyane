@@ -1,0 +1,5 @@
+// customize some Bootstrap variables
+$gradient_blue_yellow: linear-gradient(to bottom, #165096, #0083b3, #00b1ae, #89d89f, #f6f6a6);;
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
