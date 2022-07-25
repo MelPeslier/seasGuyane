@@ -1,10 +1,30 @@
 @import "./common//global";
 
-html{
-    background-image: $gradient_blue_yellow;
+.backgroundimage{
+    background-image: $gradient_blue_yellow,
+        url('..\fond_ecran\fond_south_america.jpg');
+    height: 100vh;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: normal;
+    align-items: center;
+    text-align: start;
+    padding: 0 20 px;
 }
 
-body {
-    background-color: rgba(0, 0, 255, 0.283);
+._intro{
+    text-align: center;
+    color: white;
+    padding: 10%;
+    h1{
+        font-size: 60px;
+    }
+    h3{
+        margin-top: 60px;
+        font-size: 30px;
+    }
 }
-

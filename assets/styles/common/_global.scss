@@ -1,5 +1,7 @@
 // customize some Bootstrap variables
-$gradient_blue_yellow: linear-gradient(to bottom, #165096, #0083b3, #00b1ae, #89d89f, #f6f6a6);;
+$gradient_blue_yellow: linear-gradient(to bottom, #16509695, #0083b395, #00b1ae95, #89d89f95, #f6f6a695);
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free";
+@import "~@fontsource/roboto-condensed";
