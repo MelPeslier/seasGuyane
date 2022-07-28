@@ -17,6 +17,20 @@ h1{
     font-size: 48px;
 }
 
+.alert{
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+.alert-success{
+    background-color: green;
+}
+.alert-error{
+    background-color: red;
+}
+.alert-info{
+    background-color:blue ;
+}
 
 a{
     color: black;
@@ -38,15 +52,4 @@ a{
 
 .intro{
     color: $h1_color;
-}
-
-.form_container{
-    border-style: solid;
-    background-color: $bleu_cnes;
-}
-.form_label{
-    background-color: rgb(225, 186, 55);
-}
-.form_erros{
-    background-color: #99e810;
 }

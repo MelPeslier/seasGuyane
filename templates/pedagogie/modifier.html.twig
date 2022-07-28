@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/base.html.twig' %}
 
 {% block title 'Modifier le cour #' ~ cour.id %}
 
 {% block body %}
 <h1>Modifier le cour #{{cour.id}}</h1>
 
-    {{ include('pedagogie/_form.html.twig',{submitButtonText: 'Modifer'}) }}
+    {{ include('layouts/partials/_form.html.twig',{submitButtonText: 'Modifer'}) }}
 
 {% endblock %}
