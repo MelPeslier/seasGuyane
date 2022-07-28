@@ -1,30 +1,52 @@
 @import "./common//global";
 
-.backgroundimage{
+body{
     background-image: $gradient_blue_yellow,
         url('..\fond_ecran\fond_south_america.jpg');
     height: 100vh;
+    background-attachment: fixed, fixed;
+    background-repeat: no-repeat, no-repeat;
+    background-position: top, top;
+    background-size: cover, cover;
     background-origin: border-box;
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: normal;
-    align-items: center;
-    text-align: start;
-    padding: 0 20 px;
 }
 
-._intro{
+h1{
     text-align: center;
-    color: white;
-    padding: 10%;
-    h1{
-        font-size: 60px;
-    }
-    h3{
-        margin-top: 60px;
-        font-size: 30px;
-    }
+    color: $h1_color;
+    font-size: 48px;
+}
+
+
+a{
+    color: black;
+}
+
+
+.big_div{
+    padding: 0 1em;
+    margin: 0 auto;
+    border: 2px solid rgb(0, 255, 60);
+}
+
+.form_container{
+    padding: 1em 1em;
+    max-width: 60rem;
+    margin: 0 auto;
+    border: 2px solid red;
+}
+
+.intro{
+    color: $h1_color;
+}
+
+.form_container{
+    border-style: solid;
+    background-color: $bleu_cnes;
+}
+.form_label{
+    background-color: rgb(225, 186, 55);
+}
+.form_erros{
+    background-color: #99e810;
 }

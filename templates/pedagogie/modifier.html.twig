@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Modifier le cour #' ~ cour.id %}
+
+{% block body %}
+<h1>Modifier le cour #{{cour.id}}</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <input type="submit" value="Modifier le cour" formnovalidate>
+    {{ form_end(form) }}
+{% endblock %}

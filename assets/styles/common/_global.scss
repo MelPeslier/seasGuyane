@@ -1,7 +1,13 @@
-// customize some Bootstrap variables
+// ***** VARIABLES *****
+
+// ***** couleurs 
 $gradient_blue_yellow: linear-gradient(to bottom, #16509695, #0083b395, #00b1ae95, #89d89f95, #f6f6a695);
+$bleu_cnes : #165096;
+
+// ***** h
+$h1_color : #ffffff;
 
 // the ~ allows you to reference things in node_modules
-@import "~bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free";
-@import "~@fontsource/roboto-condensed";
+@import "~@fontsource/roboto-condensed";  

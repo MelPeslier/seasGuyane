@@ -17,20 +17,20 @@
 
     <body>
         <header>
-            <div>
-                <a href=" {{ path('app_intro') }} ">Intro</a>
-                <a href=" {{ path('app_accueil') }} ">Accueil</a>
-                <a href=" {{ path('app_catalogue') }} ">Catalogue</a>
-                <a href="#">Catalogue Pro</a>
-            </div>
-            <div>
-                <a href=" {{ path('app_presentation_seas') }} ">Présentation SEAS</a>
-                <a href=" {{ path('app_pedagogie') }} ">Pédagogie</a>
-                <a href=" {{ path('app_ressources') }} ">Ressources</a>
-            </div>
+            <nav>
+                <ul>
+                    <a href=" {{ path('app_intro') }} ">Intro</a>
+                    <a href=" {{ path('app_accueil') }} ">Accueil</a>
+                    <a href=" {{ path('app_catalogue') }} ">Catalogue</a>
+                    <a href="#">Catalogue Pro</a>
+                    <a href=" {{ path('app_presentation_seas') }} ">Présentation SEAS</a>
+                    <a href=" {{ path('app_pedagogie') }} ">Pédagogie</a>
+                    <a href=" {{ path('app_ressources') }} ">Ressources</a>
+                </ul>
+            </nav>
         </header>
 
-        <div class="backgroundimage" >
+        <div class="big_div" >
             {% block body %}{% endblock %}
         </div>
         

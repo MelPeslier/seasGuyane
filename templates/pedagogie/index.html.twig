@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pedagogie{% endblock %}
+{% block title 'Pédagogie'%}
 
 {% block body %}
     <h1>Tous les cours</h1>
@@ -13,7 +13,7 @@
 
         {% for cour in cours %}
             <article>
-                <h1><a href=" {{ path('app_pedagogie_affiche', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h1>
+                <h1><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h1>
                 <p> {{ cour.description() }} </p>
             </article>
         {% else %}
