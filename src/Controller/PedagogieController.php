@@ -47,20 +47,36 @@ class PedagogieController extends AbstractController
      */
     public function modifier(Request $request, Cour $cour, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(CourType::class, $cour);
+        $form = $this->createForm(CourType::class, $cour, []);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) { 
             $em->flush();
 
-            return $this->redirectToRoute('app_pedagogie_afficher', ['id' => $cour->getId()]);
+            return $this->redirectToRoute('app_pedagogie');
         }
 
         return $this->render('pedagogie/modifier.html.twig', [
             'cour' => $cour,
             'form' => $form->createView()
         ]);
+    }
+
+
+
+    // *****************************************************************************************************
+    // Retourne la page avec tous les cours et supprime le cour séléctionner
+    // *****************************************************************************************************
+    /**
+     * @Route("pedagogie/{id<[0-9]+>}/supprimer", name="app_pedagogie_supprimer", methods={"POST"})
+     */
+    public function supprimer(Cour $cour, EntityManagerInterface $em): Response
+    {
+        $em->remove($cour);
+        $em->flush();
+        
+        return $this->redirectToRoute('app_pedagogie');
     }
 
 
