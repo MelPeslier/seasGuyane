@@ -20,8 +20,8 @@ class CourType extends AbstractType
             ->add('titre', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '70',
+                    'minlenght' => '3',
+                    'maxlenght' => '90',
                     'placeholder' => 'Titre'
                 ],
                 'label' => 'Titre',
@@ -30,7 +30,7 @@ class CourType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 70])
+                    new Assert\Length(['min' => 3, 'max' => 90])
                 ]
             ])
             ->add('imageFondFile', VichImageType::class, [
@@ -53,7 +53,7 @@ class CourType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 300])
+                    new Assert\Length(['min' => 30, 'max' => 300])
                 ]
             ])
             ->add('description', TextareaType::class, [
@@ -70,7 +70,7 @@ class CourType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 5000])
+                    new Assert\Length(['min' => 30, 'max' => 5000])
                 ]
             ])
             ->add('imageFile', VichImageType::class, [

@@ -21,14 +21,32 @@ class Cour
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 3, 
+        max: 90,
+        minMessage: 'Le titre doit comprendre au moins {{ limit }} caractères',
+        maxMessage: 'Le titre doit comprendre au plus {{ limit }} caractères'
+    )]
     private $titre;
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 30, 
+        max: 5000,
+        minMessage: 'La description doit comprendre au moins {{ limit }} caractères',
+        maxMessage: 'La description doit comprendre au plus {{ limit }} caractères'
+    )]
     private $description;
     
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 30, 
+        max: 300,
+        minMessage: 'La description brève doit comprendre au moins {{ limit }} caractères',
+        maxMessage: 'La description brève doit comprendre au plus {{ limit }} caractères'
+    )]
     private $descriptionBreve;
 
     #[ORM\Column(type: 'datetime_immutable')]
