@@ -3,38 +3,9 @@
 {% block title 'Créer un cour'%}
 
 {% block body %}
-    <h1>Créer un cour</h1> 
-    <div class="form_container">
-            {{ form_start(form) }}
-        <div class="form_row">
-            <div class="form_label">
-                {{ form_label(form.titre) }}
-            </div>
-            <div class="form_errors">
-                {{ form_errors(form.titre) }}
-            </div>
-            <div class="form_widget">
-                {{ form_widget(form.titre) }}
-            </div>            
-        </div>
-<div class="form_row">
-    {{ form_row(form.imageFondFile) }}
-</div>
-<div class="form_row">
-    {{ form_row(form.description_breve) }}
-</div>
-<div class="form_row">
-    {{ form_row(form.description) }}
-</div>
-<div class="form_row">
-    {{ form_row(form.imageFile) }}
-</div>
-<div class="form_row">
-    {{ form_rest(form) }}
-</div>
-    <input type="submit" value="Créer le cour" formnovalidate>
-        {{ form_end(form) }}
-    </div>
 
+<h1>Créer un cour</h1>
+
+{{ include('pedagogie/_form.html.twig') }}
 
 {% endblock %}

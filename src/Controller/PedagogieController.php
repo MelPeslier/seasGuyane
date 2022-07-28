@@ -48,7 +48,7 @@ class PedagogieController extends AbstractController
     public function modifier(Request $request, Cour $cour, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(CourType::class, $cour, []);
-
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) { 
@@ -71,11 +71,12 @@ class PedagogieController extends AbstractController
     /**
      * @Route("pedagogie/{id<[0-9]+>}/supprimer", name="app_pedagogie_supprimer", methods={"POST"})
      */
-    public function supprimer(Cour $cour, EntityManagerInterface $em): Response
+    public function supprimer(Request $request,Cour $cour, EntityManagerInterface $em): Response
     {
-        $em->remove($cour);
-        $em->flush();
-        
+        if ($this->isCsrfTokenValid('supprimer_cour_' . $cour->getId(), $request->request->get('pas_un_token_csrf'))) {
+            $em->remove($cour);
+            $em->flush();
+        }
         return $this->redirectToRoute('app_pedagogie');
     }
 
