@@ -27,10 +27,6 @@ class CourType extends AbstractType
                 'label' => 'Titre',
                 'label_attr' => [
                     'class' => 'form_label'
-                ],
-                'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 3, 'max' => 90])
                 ]
             ])
             ->add('imageFondFile', VichImageType::class, [
@@ -50,10 +46,6 @@ class CourType extends AbstractType
                 'label' => 'Ajout de la description brève',
                 'label_attr' => [
                     'class' => 'form_desc'
-                ],
-                'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 30, 'max' => 300])
                 ]
             ])
             ->add('description', TextareaType::class, [
@@ -67,10 +59,6 @@ class CourType extends AbstractType
                 'label' => 'Ajout de la description',
                 'label_attr' => [
                     'class' => 'form_desc'
-                ],
-                'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 30, 'max' => 5000])
                 ]
             ])
             ->add('imageFile', VichImageType::class, [

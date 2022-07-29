@@ -5,13 +5,13 @@
         <title>{% block title %}SEAS Guyane{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
 
@@ -19,19 +19,7 @@
 
         {{ include('layouts/partials/_flash_messages.html.twig') }}
 
-        <header>
-            <nav>
-                <ul>
-                    <a href=" {{ path('app_intro') }} ">Intro</a>
-                    <a href=" {{ path('app_accueil') }} ">Accueil</a>
-                    <a href=" {{ path('app_catalogue') }} ">Catalogue</a>
-                    <a href="#">Catalogue Pro</a>
-                    <a href=" {{ path('app_presentation_seas') }} ">Présentation SEAS</a>
-                    <a href=" {{ path('app_pedagogie') }} ">Pédagogie</a>
-                    <a href=" {{ path('app_ressources') }} ">Ressources</a>
-                </ul>
-            </nav>
-        </header>
+        {{ include('layouts/partials/_nav.html.twig') }}
 
         <div class="big_div" >
             {% block body %}{% endblock %}
