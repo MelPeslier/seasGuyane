@@ -13,7 +13,6 @@
     <a href="{{ path('app_pedagogie_modifier', {id: cour.id}) }}">Modifier</a>
     <a href="#" onclick="event.preventDefault(); confirm('Voulez-vous réellement supprimer ce cour ?') && 
     document.getElementById('js-pin-delete-form').submit();">Supprimer</a>
-    <a href="{{ path('app_pedagogie') }}">Retour</a>
 
     <form id="js-pin-delete-form" action="{{ path('app_pedagogie_supprimer', {id: cour.id}) }}" method="post" style="disply:none;">
         <input type="hidden" name="pas_un_token_csrf" value="{{ csrf_token('supprimer_cour_' ~ cour.id) }}">

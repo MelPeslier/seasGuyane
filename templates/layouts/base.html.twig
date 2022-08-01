@@ -21,9 +21,9 @@
 
         {{ include('layouts/partials/_nav.html.twig') }}
 
-        <div class="big_div" >
+        <main role="main" class="container">
             {% block body %}{% endblock %}
-        </div>
+        </main>
         
         {{ include('layouts/partials/_footer.html.twig') }}
     </body>

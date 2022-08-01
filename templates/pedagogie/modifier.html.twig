@@ -3,8 +3,12 @@
 {% block title 'Modifier le cour #' ~ cour.id %}
 
 {% block body %}
-<h1>Modifier le cour #{{cour.id}}</h1>
 
-    {{ include('layouts/partials/_form.html.twig',{submitButtonText: 'Modifer'}) }}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h1>Modifier le cour #{{cour.id}}</h1>
 
+        {{ include('layouts/partials/_form.html.twig',{submitButtonText: 'Modifer'}) }}
+    <\div>
+<\div>
 {% endblock %}
