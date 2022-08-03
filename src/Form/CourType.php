@@ -19,52 +19,36 @@ class CourType extends AbstractType
         $builder
             ->add('titre', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
                     'minlenght' => '3',
                     'maxlenght' => '90',
                     'placeholder' => 'Titre'
                 ],
-                'label' => 'Titre',
-                'label_attr' => [
-                    'class' => 'form_label'
-                ]
+                'label' => 'Titre'
             ])
             ->add('imageFondFile', VichImageType::class, [
                 'label' => 'Image du fond de rubrique',
-                'attr' => [
-                    'class' => 'form-control',
-                ]
+
             ])
             ->add('description_breve', TextareaType::class, [
                 'attr' => [
-                    'class' => 'form-control',
                     'minlenght' => '2',
                     'maxlenght' => '300',
                     'rows' => '3',
                     'placeholder' => 'ajouter une description brève'
                 ],
-                'label' => 'Ajout de la description brève',
-                'label_attr' => [
-                    'class' => 'form_desc'
-                ]
+                'label' => 'Ajout de la description brève'
             ])
             ->add('description', TextareaType::class, [
                 'attr' => [
-                    'class' => 'form-control',
-                    'minlenght' => '2',
                     'maxlenght' => '5000',
                     'rows' => '10',
                     'placeholder' => 'ajouter une description complète'
                 ],
-                'label' => 'Ajout de la description',
-                'label_attr' => [
-                    'class' => 'form_desc'
-                ]
+                'label' => 'Ajout de la description'
             ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'ajouter un schéma',
                 'attr' => [
-                    'class' => 'form-control',
                     'placeholder' => 'aajouter un schéma'
                 ]
             ])

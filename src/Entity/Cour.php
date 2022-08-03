@@ -29,12 +29,9 @@ class Cour
     )]
     private $titre;
 
-    #[ORM\Column(type: 'text')]
-    #[Assert\NotBlank]
+    #[ORM\Column(type: 'text', nullable : true)]
     #[Assert\Length(
-        min: 30, 
         max: 5000,
-        minMessage: 'La description doit comprendre au moins {{ limit }} caractères',
         maxMessage: 'La description doit comprendre au plus {{ limit }} caractères'
     )]
     private $description;
@@ -61,7 +58,7 @@ class Cour
     #[Vich\UploadableField(mapping: 'cours_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable : true)]
     private ?string $imageName = null;
 
     /**
@@ -107,7 +104,7 @@ class Cour
     #[Vich\UploadableField(mapping: 'cours_fond_images', fileNameProperty: 'imageFondName')]
     private ?File $imageFondFile = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable : true)]
     private ?string $imageFondName = null;
 
     /**
