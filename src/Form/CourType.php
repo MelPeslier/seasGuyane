@@ -20,37 +20,34 @@ class CourType extends AbstractType
             ->add('titre', TextType::class, [
                 'attr' => [
                     'minlenght' => '3',
-                    'maxlenght' => '90',
-                    'placeholder' => 'Titre'
+                    'maxlenght' => '90'
                 ],
                 'label' => 'Titre'
             ])
             ->add('imageFondFile', VichImageType::class, [
-                'label' => 'Image du fond de rubrique',
-
+                'label' => 'Image de fond (PNG ou JPG)',
+                'download_uri' => false,
+                'allow_delete' => true
             ])
             ->add('description_breve', TextareaType::class, [
                 'attr' => [
                     'minlenght' => '2',
                     'maxlenght' => '300',
-                    'rows' => '3',
-                    'placeholder' => 'ajouter une description brève'
+                    'rows' => '3'
                 ],
-                'label' => 'Ajout de la description brève'
+                'label' => 'Ajouter une description brève'
             ])
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'maxlenght' => '5000',
-                    'rows' => '10',
-                    'placeholder' => 'ajouter une description complète'
+                    'rows' => '10'
                 ],
-                'label' => 'Ajout de la description'
+                'label' => 'Ajouter une description complète'
             ])
             ->add('imageFile', VichImageType::class, [
-                'label' => 'ajouter un schéma',
-                'attr' => [
-                    'placeholder' => 'aajouter un schéma'
-                ]
+                'label' => 'Ajouter un schéma',
+                'download_uri' => false,
+                'allow_delete' => true
             ])
         ;
     }

@@ -56,6 +56,7 @@ class Cour
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
     #[Vich\UploadableField(mapping: 'cours_images', fileNameProperty: 'imageName')]
+    #[Assert\Image(maxSize: "8M")]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'string', nullable : true)]
@@ -102,6 +103,7 @@ class Cour
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
     #[Vich\UploadableField(mapping: 'cours_fond_images', fileNameProperty: 'imageFondName')]
+    #[Assert\Image(maxSize: "4M")]
     private ?File $imageFondFile = null;
 
     #[ORM\Column(type: 'string', nullable : true)]
