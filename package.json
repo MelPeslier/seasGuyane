@@ -30,6 +30,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "imagemagick": "^0.1.3",
         "webpack-dev-server": "^4.9.3"
     }
 }
