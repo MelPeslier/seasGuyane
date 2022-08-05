@@ -1,11 +1,36 @@
 
 
-.imagespartenaires{
+img{
+    max-width: 100%;
+    height: auto;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.image_partenaires{
     margin: 10px;
-    border: 3px solid rgb(215, 25, 152);
 }
 
 .image_fond_rubrique{
-    margin: 10px;
-    border: 3px solid peru;
+    background-color: rgb(130, 130, 130);
+    max-width: 300px;
+}
+
+.image_rubrique{
+    max-width: 600px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.vich-image {
+    .form-check {
+        @extend .mt-3;
+    }
+
+    img {
+        @extend .mb-2;
+        @extend .rounded;
+        @extend .shadow;
+        @extend .img-thumbnail;
+    }
 }

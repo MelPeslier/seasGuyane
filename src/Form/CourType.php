@@ -25,7 +25,7 @@ class CourType extends AbstractType
                 'label' => 'Titre'
             ])
             ->add('imageFondFile', VichImageType::class, [
-                'label' => 'Image de fond (PNG ou JPG)',
+                'label' => 'Image de la rubrique (PNG ou JPG)',
                 'download_uri' => false,
                 'allow_delete' => true
             ])

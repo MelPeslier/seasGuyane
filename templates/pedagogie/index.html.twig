@@ -8,15 +8,38 @@
         {% set cour_compteur = cours|length %}    
 
         {{ cour_compteur }}
-        
-        <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
 
-        {% for cour in cours %}
-            <article>
-                <h1><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h1>
-                <p> {{ cour.description() }} </p>
-            </article>
+    <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
+    {% set tmp = 0 %}
+    {% for false %}
+        {% if (tmp % 2) == 0 %}
+            <div class="">
+                <div class="">
+                    <div class="">
+                        <h2 class=""><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h2>
+                        <p class="lead">{{ cour.descriptionBreve() }}</p>
+                    </div>
+                    <div class="case_image_fond_rubrique">
+                        <img class="image_fond_rubrique" src="{{ vich_uploader_asset(cour, 'imageFondFile') }}">
+                    </div>
+                </div>
         {% else %}
-            <p>Pas encore de cours !</p>
-        {% endfor %}
+            <div class="">
+                <div class="">
+                    <h2 class="display-5"><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h2>
+                    <p class="lead">{{ cour.descriptionBreve() }}</p>
+                </div>
+                <div class="case_image_fond_rubrique">
+                    <img class="image_fond_rubrique" src="{{ vich_uploader_asset(cour, 'imageFondFile') }}">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% set tmp = tmp +1 %}
+    {% else %}
+        <p>Pas encore de cours !</p>
+    {% endfor %}
+
+
+
 {% endblock %}
