@@ -165,18 +165,6 @@ class Cour
         return $this;
     }
 
-    public function getDescriptionBreve(): ?string
-    {
-        return $this->descriptionBreve;
-    }
-
-    public function setDescriptionBreve(string $descriptionBreve): self
-    {
-        $this->descriptionBreve = $descriptionBreve;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
