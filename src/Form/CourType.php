@@ -29,14 +29,6 @@ class CourType extends AbstractType
                 'download_uri' => false,
                 'allow_delete' => true
             ])
-            ->add('description_breve', TextareaType::class, [
-                'attr' => [
-                    'minlenght' => '2',
-                    'maxlenght' => '300',
-                    'rows' => '3'
-                ],
-                'label' => 'Ajouter une description brève'
-            ])
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'maxlenght' => '5000',
