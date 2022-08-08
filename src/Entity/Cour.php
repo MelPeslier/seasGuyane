@@ -35,6 +35,16 @@ class Cour
         maxMessage: 'La description doit comprendre au plus {{ limit }} caractères'
     )]
     private $description;
+    
+    #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 30, 
+        max: 300,
+        minMessage: 'La description brève doit comprendre au moins {{ limit }} caractères',
+        maxMessage: 'La description brève doit comprendre au plus {{ limit }} caractères'
+    )]
+    private $descriptionBreve;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
@@ -161,6 +171,18 @@ class Cour
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDescriptionBreve(): ?string
+    {
+        return $this->descriptionBreve;
+    }
+
+    public function setDescriptionBreve(string $descriptionBreve): self
+    {
+        $this->descriptionBreve = $descriptionBreve;
 
         return $this;
     }
