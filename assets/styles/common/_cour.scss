@@ -1,0 +1,15 @@
+.cour img{
+    width: 100%;
+    height: $taille_max;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease-out;
+    &:hover {
+        transform: scale(1.075);
+    }
+}
+
+.cour div{
+    max-width: $taille_max;
+    max-height: $taille_max;
+}

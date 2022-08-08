@@ -8,38 +8,28 @@
         {% set cour_compteur = cours|length %}    
 
         {{ cour_compteur }}
-
+    
     <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
-    {% set tmp = 0 %}
-    {% for false %}
-        {% if (tmp % 2) == 0 %}
-            <div class="">
-                <div class="">
-                    <div class="">
-                        <h2 class=""><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h2>
-                        <p class="lead">{{ cour.descriptionBreve() }}</p>
-                    </div>
-                    <div class="case_image_fond_rubrique">
-                        <img class="image_fond_rubrique" src="{{ vich_uploader_asset(cour, 'imageFondFile') }}">
-                    </div>
-                </div>
-        {% else %}
-            <div class="">
-                <div class="">
-                    <h2 class="display-5"><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h2>
-                    <p class="lead">{{ cour.descriptionBreve() }}</p>
-                </div>
-                <div class="case_image_fond_rubrique">
-                    <img class="image_fond_rubrique" src="{{ vich_uploader_asset(cour, 'imageFondFile') }}">
-                </div>
-            </div>
-        </div>
-        {% endif %}
-        {% set tmp = tmp +1 %}
-    {% else %}
-        <p>Pas encore de cours !</p>
-    {% endfor %}
 
+    {% for row in cours|batch(3) %}
+    <div class="row mb-5">
+        {% for cour in row %}
+            <div class="col-md-4">
+                <article class="cour bg-white rounded shadow">
+                    <div class="cour mw-100 overflow-hidden rounded-top">
+                        <a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">
+                            <img src="{{ cour.imageFondName ? vich_uploader_asset(cour) : asset('images/placeholders/placeholder.png')}}">
+                        </a>
+                    </div>
+                        <h2><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h2>
+                        <p class="lead">{{ cour.description }}</p>
+                </article>
+            </div>
+        {% else %}
+            <p class="h1 mt-5 text-center">Pas encore de cours !</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
 
 
 {% endblock %}
