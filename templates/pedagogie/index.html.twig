@@ -3,13 +3,10 @@
 {% block title 'Pédagogie'%}
 
 {% block body %}
-    <h1>Tous les cours</h1>
 
-        {% set cour_compteur = cours|length %}    
-
-        {{ cour_compteur }}
-    
-    <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
+    <h1>
+        <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
+    </h1>
 
     {% for row in cours|batch(3) %}
     <div class="row mb-5">
