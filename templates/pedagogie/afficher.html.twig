@@ -3,24 +3,31 @@
 {% block title 'cour #' ~ cour.id %}
 
 {% block body %}
-    <h1>{{ cour.titre }}</h1>
-    <p>{{ cour.description }}</p>
-    {# <div class="image_fond_rubrique">
-        <img src="{{ vich_uploader_asset(cour, 'imageFondFile') }}">
-    </div> #}
-    <div class="image_rubrique">
-        <img src="{{ vich_uploader_asset(cour, 'imageFile') }}">
-    </div>
-    <p>{{ cour.imageName }}</p>
 
-    <a href="{{ path('app_pedagogie_modifier', {id: cour.id}) }}">Modifier</a>
-    <a href="#" onclick="event.preventDefault(); confirm('Voulez-vous réellement supprimer ce cour ?') && 
-    document.getElementById('js-pin-delete-form').submit();">Supprimer</a>
+    <article class=" bg-white rounded shadow mt-5">
+        <div class="cour mw-100 overflow-hidden rounded-top">
+            <img src="{{ cour.imageFondName ? vich_uploader_asset(cour, 'imageFondFile') : asset('images/placeholders/placeholder.png')}}">
+        </div>
 
-    <form id="js-pin-delete-form" action="{{ path('app_pedagogie_supprimer', {id: cour.id}) }}" method="post" style="disply:none;">
-        <input type="hidden" name="pas_un_token_csrf" value="{{ csrf_token('supprimer_cour_' ~ cour.id) }}">
-        <input type="hidden" name="_method" value="DELETE">
-    </form>
+        <h2>{{ cour.titre() }}</h2>
+        <p class="lead">{{ cour.description}}...</p>
+        
+        <div class="image_rubrique">
+            <img src="{{ vich_uploader_asset(cour, 'imageFile') }}">
+        </div>
+        <p>{{ cour.imageName }}</p>
+
+        <a href="{{ path('app_pedagogie_modifier', {id: cour.id}) }}">Modifier</a>
+        <a href="#" onclick="event.preventDefault(); confirm('Voulez-vous réellement supprimer ce cour ?') && 
+        document.getElementById('js-pin-delete-form').submit();">Supprimer</a>
+
+        <form id="js-pin-delete-form" action="{{ path('app_pedagogie_supprimer', {id: cour.id}) }}" method="post" style="disply:none;">
+            <input type="hidden" name="pas_un_token_csrf" value="{{ csrf_token('supprimer_cour_' ~ cour.id) }}">
+            <input type="hidden" name="_method" value="DELETE">
+        </form>
+    </article>
+
+
 
 {% endblock %}
 
