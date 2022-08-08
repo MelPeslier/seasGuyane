@@ -18,17 +18,17 @@
                 <article class="cour bg-white rounded shadow">
                     <div class="cour mw-100 overflow-hidden rounded-top">
                         <a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">
-                            <img src="{{ cour.imageFondName ? vich_uploader_asset(cour) : asset('images/placeholders/placeholder.png')}}">
+                            <img src="{{ cour.imageFondName ? vich_uploader_asset(cour, 'imageFondFile') : asset('images/placeholders/placeholder.png')}}">
                         </a>
                     </div>
                         <h2><a href=" {{ path('app_pedagogie_afficher', {'id': cour.id}) }} ">{{ cour.titre() }}</a></h2>
-                        <p class="lead">{{ cour.description }}</p>
+                        <p class="lead">{{ cour.description|u.truncate(100) }}...</p>
                 </article>
             </div>
-        {% else %}
-            <p class="h1 mt-5 text-center">Pas encore de cours !</p>
         {% endfor %}
     </div>
+    {% else %}
+        <p class="h1 mt-5 text-center">Pas encore de cours !</p>
     {% endfor %}
 
 
