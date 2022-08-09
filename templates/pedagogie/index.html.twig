@@ -4,9 +4,11 @@
 
 {% block body %}
 
-    <h1>
-        <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
-    </h1>
+    {% if app.user %}
+        <h1>
+            <a href="{{ path('app_pedagogie_creer') }}">Créer un cour</a>
+        </h1>
+    {% endif %}
 
     {% for row in cours|batch(3) %}
     <div class="row mb-5">
