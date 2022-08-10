@@ -18,7 +18,14 @@
 
     {% if app.user %}
       <a class="navbar-brand" href="#">Compte</a>
-      <a class="navbar-brand" href="{{ path('app_logout') }}">Déconnexion</a>
+      <a class="navbar-brand" href="#" onclick="event.preventDefault();
+        document.getElementById('js-logout-form').submit();">Déconnexion</a>
+
+      <form id="js-logout-form" action="{{ path('app_logout') }}" method="POST" style="display: none;">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+      </form>
+
+
     {% else %}
       <a class="navbar-brand" href="{{ path('app_register') }}">Créer un compte</a>
       <a class="navbar-brand" href="{{ path('app_login') }}">Connexion</a>
