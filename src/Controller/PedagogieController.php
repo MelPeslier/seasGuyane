@@ -71,7 +71,7 @@ class PedagogieController extends AbstractController
     // Retourne la page pour modifier un cour
     // *****************************************************************************************************
 
-    #[Route(path: 'pedagogie/{id<[0-9]+>/modifer}', name: 'app_pedagogie_modifier', methods: ['GET', 'POST'])]
+    #[Route(path: 'pedagogie/{id<[0-9]+>}/modifer', name: 'app_pedagogie_modifier', methods: ['GET', 'POST'])]
     public function modifier(Request $request, Cour $cour, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(CourType::class, $cour, []);
