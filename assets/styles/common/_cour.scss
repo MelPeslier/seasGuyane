@@ -1,6 +1,6 @@
 .cour img{
     width: 100%;
-    height: $taille_max;
+    height: $taille_max_img;
     object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease-out;
@@ -9,7 +9,3 @@
     }
 }
 
-.cour div{
-    max-width: $taille_max;
-    max-height: $taille_max;
-}
