@@ -10,21 +10,24 @@
         </div>
         <div class='p-3 text-break'>
             <h2 class="text-break">{{ cour.titre() }}</h2>
-            <p class="lead text-break">{{ cour.description}}...</p>
+            <p class="lead text-break">{{ cour.description}}</p>
         </div>
         <div class="image_rubrique">
             <img src="{{ vich_uploader_asset(cour, 'imageFile') }}">
         </div>
-        <div class='p-3 text-break'>
-            <a href="{{ path('app_pedagogie_modifier', {id: cour.id}) }}" class="btn btn-light">Modifier</a>
-            <a href="#" onclick="event.preventDefault(); confirm('Voulez-vous réellement supprimer ce cour ?') && 
-            document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Supprimer</a>
-        </div>
 
-        <form id="js-pin-delete-form" action="{{ path('app_pedagogie_supprimer', {id: cour.id}) }}" method="POST" style="disply: none;">
-            <input type="hidden" name="pas_un_token_csrf" value="{{ csrf_token('supprimer_cour_' ~ cour.id) }}">
-            <input type="hidden" name="_method" value="DELETE">
-        </form>
+        {% if app.user %}
+            <div class='p-3 text-break'>
+                <a href="{{ path('app_pedagogie_modifier', {id: cour.id}) }}" class="btn btn-light">Modifier</a>
+                <a href="#" onclick="event.preventDefault(); confirm('Voulez-vous réellement supprimer ce cour ?') && 
+                document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Supprimer</a>
+            </div>
+
+            <form id="js-pin-delete-form" action="{{ path('app_pedagogie_supprimer', {'id': cour.id}) }}" method="POST" style="disply: none;">
+                <input type="hidden" name="pas_un_token_csrf" value="{{ csrf_token('supprimer_cour_' ~ cour.id) }}">
+                <input type="hidden" name="_method" value="DELETE">
+            </form>
+        {% endif %}
     </article>
 
 
