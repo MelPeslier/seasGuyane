@@ -36,7 +36,7 @@
 </nav>
 
 
-
+{% if  not set_active_route('app_catalogue') %}
 <nav class="navbar navbar-light" style="background-color: #D9D9D999;">
   <div class="container-fluid">
     <a class="navbar-brand" href=" {{ path('app_presentation_seas') }} ">
@@ -53,3 +53,4 @@
     </a>
   </div>
 </nav>
+{% endif %}
