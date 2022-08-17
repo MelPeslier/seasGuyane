@@ -12,3 +12,5 @@ import './styles/app.scss';
 import './bootstrap';
 
 import * as bootstrap from 'bootstrap'
+
+import './javascript/map.js';
