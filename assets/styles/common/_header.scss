@@ -1,0 +1,11 @@
+a.active {
+    color : $active_color;
+}
+
+a.active img{
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.973), 0 6px 20px 0 rgb(0, 0, 0);
+}
+
+a.active.nav2{
+    color : $active_color_nav2;
+}
