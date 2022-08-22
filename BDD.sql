@@ -99,8 +99,6 @@ CREATE TABLE TB_mes_contenus
         image_name VARCHAR(255) NOT NULL,
 		
         donnee_seas VARCHAR(255) NOT NULL,
-        date_ VARCHAR(10) NOT NULL,
-        fournisseur VARCHAR(100) NOT NULL
 	)
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -110,8 +108,6 @@ CREATE TABLE TB_mes_thematiques
         thematique VARCHAR(30) NOT NULL,
         
         donnee_seas VARCHAR(255) NOT NULL,
-        date_ VARCHAR(10) NOT NULL,
-        fournisseur VARCHAR(100) NOT NULL
 	)
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
