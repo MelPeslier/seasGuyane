@@ -1,3 +1,11 @@
+
+
+-- 
+-- Malheuresement, on ne peut pas importer des données depuis une BDD déja créée,
+-- il nous faut alors recréer tout ce code depuis les commandes make:entity de symfony...
+-- 
+
+
 USE seasguyane;
 
 -- 
