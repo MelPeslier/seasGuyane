@@ -13,3 +13,23 @@ vich_uploader:
             uri_prefix: /images/cours/fond
             upload_destination: '%kernel.project_dir%/public/images/cours/fond'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
+        vehicule_images:
+            uri_prefix: /images/vehicule
+            upload_destination: '%kernel.project_dir%/public/images/vehicule'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        type_de_produit_images:
+            uri_prefix: /images/type_de_produit
+            upload_destination: '%kernel.project_dir%/public/images/type_de_produit'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        thematique_images:
+            uri_prefix: /images/thematique
+            upload_destination: '%kernel.project_dir%/public/images/thematique'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        contenus_images:
+            uri_prefix: /images/contenus
+            upload_destination: '%kernel.project_dir%/public/images/contenus'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
