@@ -12,6 +12,7 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
+        "fakerphp/faker": "^1.20",
         "imagine/imagine": "^1.2",
         "liip/imagine-bundle": "^2.8",
         "orbitale/imagemagick-php": "^3.3",
