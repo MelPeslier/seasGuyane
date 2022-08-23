@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DonneeSeasRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DonneeSeasRepository::class)]
@@ -40,11 +41,11 @@ class DonneeSeas
 
     #[ORM\ManyToOne(inversedBy: 'donneeSeas')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?resolution $resolution = null;
+    private ?Resolution $resolution = null;
 
     #[ORM\ManyToOne(inversedBy: 'myDonneeSeas')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?typeDeProduit $type_de_produit = null;
+    private ?TypeDeProduit $type_de_produit = null;
 
     #[ORM\ManyToOne(inversedBy: 'donnee_seas')]
     #[ORM\JoinColumn(nullable: false)]
@@ -52,6 +53,12 @@ class DonneeSeas
 
     #[ORM\OneToMany(mappedBy: 'donnee_seas', targetEntity: MesThematiques::class)]
     private Collection $mesThematiques;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'donneeSeas')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -135,24 +142,24 @@ class DonneeSeas
         return $this;
     }
 
-    public function getResolution(): ?resolution
+    public function getResolution(): ?Resolution
     {
         return $this->resolution;
     }
 
-    public function setResolution(?resolution $resolution): self
+    public function setResolution(?Resolution $resolution): self
     {
         $this->resolution = $resolution;
 
         return $this;
     }
 
-    public function getTypeDeProduit(): ?typeDeProduit
+    public function getTypeDeProduit(): ?TypeDeProduit
     {
         return $this->type_de_produit;
     }
 
-    public function setTypeDeProduit(?typeDeProduit $type_de_produit): self
+    public function setTypeDeProduit(?TypeDeProduit $type_de_produit): self
     {
         $this->type_de_produit = $type_de_produit;
 
@@ -197,6 +204,30 @@ class DonneeSeas
                 $mesThematique->setDonneeSeas(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -52,9 +52,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: donneeSeas::class)]
+    private Collection $donneeSeas;
+
     public function __construct()
     {
         $this->cours = new ArrayCollection();
+        $this->donneeSeas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +193,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, donneeSeas>
+     */
+    public function getDonneeSeas(): Collection
+    {
+        return $this->donneeSeas;
+    }
+
+    public function addDonneeSea(donneeSeas $donneeSea): self
+    {
+        if (!$this->donneeSeas->contains($donneeSea)) {
+            $this->donneeSeas[] = $donneeSea;
+            $donneeSea->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDonneeSea(donneeSeas $donneeSea): self
+    {
+        if ($this->donneeSeas->removeElement($donneeSea)) {
+            // set the owning side to null (unless already changed)
+            if ($donneeSea->getUser() === $this) {
+                $donneeSea->setUser(null);
+            }
+        }
 
         return $this;
     }

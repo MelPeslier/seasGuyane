@@ -15,11 +15,11 @@ class MesThematiques
 
     #[ORM\ManyToOne(inversedBy: 'mesThematiques')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?thematique $thematique = null;
+    private ?Thematique $thematique = null;
 
     #[ORM\ManyToOne(inversedBy: 'mesThematiques')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?donneeSeas $donnee_seas = null;
+    private ?DonneeSeas $donnee_seas = null;
 
     public function getId(): ?int
     {
