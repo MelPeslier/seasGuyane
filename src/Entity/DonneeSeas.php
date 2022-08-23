@@ -39,7 +39,7 @@ class DonneeSeas
     #[ORM\JoinColumn(nullable: false)]
     private ?Vehicule $vehicule = null;
 
-    #[ORM\ManyToOne(inversedBy: 'donneeSeas')]
+    #[ORM\ManyToOne(inversedBy: 'myDonneeSeas')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Resolution $resolution = null;
 
