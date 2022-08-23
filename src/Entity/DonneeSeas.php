@@ -16,7 +16,7 @@ class DonneeSeas
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $donne_seas = null;
+    private ?string $donnee_seas = null;
 
     #[ORM\ManyToOne(inversedBy: 'myDonneeSeas')]
     #[ORM\JoinColumn(nullable: false)]
@@ -63,14 +63,14 @@ class DonneeSeas
         return $this->id;
     }
 
-    public function getDonneSeas(): ?string
+    public function getDonneeSeas(): ?string
     {
-        return $this->donne_seas;
+        return $this->donnee_seas;
     }
 
-    public function setDonneSeas(string $donne_seas): self
+    public function setDonneeSeas(string $donnee_seas): self
     {
-        $this->donne_seas = $donne_seas;
+        $this->donnee_seas = $donnee_seas;
 
         return $this;
     }
