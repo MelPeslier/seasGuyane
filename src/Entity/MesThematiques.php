@@ -21,6 +21,10 @@ class MesThematiques
     #[ORM\JoinColumn(nullable: false)]
     private ?DonneeSeas $donnee_seas = null;
 
+    #[ORM\ManyToOne(inversedBy: 'mesThematiques')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +50,18 @@ class MesThematiques
     public function setDonneeSeas(?DonneeSeas $donnee_seas): self
     {
         $this->donnee_seas = $donnee_seas;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

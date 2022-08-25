@@ -20,6 +20,10 @@ class VehiculeSpe
     #[ORM\JoinColumn(nullable: false)]
     private ?Vehicule $vehicule = null;
 
+    #[ORM\ManyToOne(inversedBy: 'vehiculeSpes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class VehiculeSpe
     public function setVehicule(?Vehicule $vehicule): self
     {
         $this->vehicule = $vehicule;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

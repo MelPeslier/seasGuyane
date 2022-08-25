@@ -37,6 +37,10 @@ class Thematique
     #[ORM\Column(type: 'string', nullable : true)]
     private ?string $imageName = null;
 
+    #[ORM\ManyToOne(inversedBy: 'thematiques')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
+
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the update. If this
@@ -122,6 +126,18 @@ class Thematique
                 $mesThematique->setThematique(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }
