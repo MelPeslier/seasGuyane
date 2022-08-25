@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\DonneeSeas;
+use App\Entity\VehiculeSpe;
 use App\Form\DonneeSeasType;
+use App\Form\VehiculeSpeType;
+use App\Repository\VehiculeRepository;
 use App\Repository\DonneeSeasRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,11 +21,19 @@ class CatalogueController extends AbstractController
     // *****************************************************************************************************
 
     #[Route(path: 'catalogue', name: 'app_catalogue', methods: ['GET'])]
-    public function index(DonneeSeasRepository $repo): Response
+    public function index(DonneeSeasRepository $repo, VehiculeRepository $rv): Response
     {
-        return $this->render('catalogue/index.html.twig', ['donneeSeas' => $repo-> findBy([])]);
+        return $this->render('catalogue/index.html.twig', [
+            'donneeSeas' => $repo -> findAll(),
+            'vehicules' => $rv -> findAll()
+        ]);
     }
 
+
+
+// *****************************************************************************************************
+// DONNEE SEAS CRUD
+// *****************************************************************************************************
 
 
     // *****************************************************************************************************
@@ -101,7 +112,7 @@ class CatalogueController extends AbstractController
     #[Route(path: 'catalogue/{id<[0-9]+>}', name: 'app_catalogue_supprimer', methods: ['POST'])]
     public function supprimer(Request $request,DonneeSeas $ds, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('supprimer_ds_' . $ds->getId(), $request->request->get('pas_un_token_csrf'))) {
+        if ($this->isCsrfTokenValid('supprimer_cour_' . $ds->getId(), $request->request->get('pas_un_token_csrf'))) {
             $em->remove($ds);
             $em->flush();
 
