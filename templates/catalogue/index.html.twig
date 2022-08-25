@@ -15,6 +15,35 @@
 
 {% block body %}
 
-    <div id="map"></div>
+    {# <div id="map"></div> #}
+
+    {# {% if app.user %} #}
+        <h1>
+            <a href="{{ path('app_catalogue_creer') }}">Créer une donnée Seas</a>
+        </h1>
+    {# {% endif %} #}
+
+    {% for row in donneeSeas|batch(3) %}
+    <div class="row mb-5">
+        {% for donneeSea in row %}
+            <div class="col-md-4 mb-5">
+                <article class="cour bg-white rounded shadow">
+                    <div class="cour mw-100 overflow-hidden rounded-top">
+                        <a href=" {{ path('app_catalogue_afficher', {'id': donneeSeas.id}) }} ">
+                            <img src="{{ donneeSeas.donnee_seas }}">
+                        </a>
+                    </div>
+                    <div class="p-3">
+                        <h2 class="text-break"><a href=" {{ path('app_catalogue_afficher', {'id': donneeSeas.id}) }} ">{{ donneeSeas.donnee_seas() }}</a></h2>
+                        <p class="lead text-break">{{ donneeSeas.donnee_seas|u.truncate(100) }}...</p>
+                        <p class="text-break">{{ donneeSeas.donnee_seas }}</p>
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="h1 mt-5 text-center">Pas encore de données... !</p>
+    {% endfor %}
 
 {% endblock %}
