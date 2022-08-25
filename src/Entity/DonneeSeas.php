@@ -47,10 +47,6 @@ class DonneeSeas
     #[ORM\JoinColumn(nullable: false)]
     private ?TypeDeProduit $type_de_produit = null;
 
-    #[ORM\ManyToOne(inversedBy: 'donnee_seas')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?MesContenus $mesContenus = null;
-
     #[ORM\OneToMany(mappedBy: 'donnee_seas', targetEntity: MesThematiques::class)]
     private Collection $mesThematiques;
 
@@ -60,9 +56,13 @@ class DonneeSeas
     #[ORM\ManyToOne(inversedBy: 'donneeSeas')]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'mes_contenus', targetEntity: MesContenus::class)]
+    private Collection $mesContenuses;
+
     public function __construct()
     {
         $this->mesThematiques = new ArrayCollection();
+        $this->mesContenuses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -166,18 +166,6 @@ class DonneeSeas
         return $this;
     }
 
-    public function getMesContenus(): ?MesContenus
-    {
-        return $this->mesContenus;
-    }
-
-    public function setMesContenus(?MesContenus $mesContenus): self
-    {
-        $this->mesContenus = $mesContenus;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, MesThematiques>
      */
@@ -228,6 +216,36 @@ class DonneeSeas
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MesContenus>
+     */
+    public function getMesContenuses(): Collection
+    {
+        return $this->mesContenuses;
+    }
+
+    public function addMesContenus(MesContenus $mesContenus): self
+    {
+        if (!$this->mesContenuses->contains($mesContenus)) {
+            $this->mesContenuses[] = $mesContenus;
+            $mesContenus->setMesContenus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesContenus(MesContenus $mesContenus): self
+    {
+        if ($this->mesContenuses->removeElement($mesContenus)) {
+            // set the owning side to null (unless already changed)
+            if ($mesContenus->getMesContenus() === $this) {
+                $mesContenus->setMesContenus(null);
+            }
+        }
 
         return $this;
     }

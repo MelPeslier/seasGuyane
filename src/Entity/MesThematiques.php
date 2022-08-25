@@ -38,12 +38,12 @@ class MesThematiques
         return $this;
     }
 
-    public function getDonneeSeas(): ?donneeSeas
+    public function getDonneeSeas(): ?DonneeSeas
     {
         return $this->donnee_seas;
     }
 
-    public function setDonneeSeas(?donneeSeas $donnee_seas): self
+    public function setDonneeSeas(?DonneeSeas $donnee_seas): self
     {
         $this->donnee_seas = $donnee_seas;
 

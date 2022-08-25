@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ResolutionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ResolutionRepository::class)]
@@ -15,11 +16,11 @@ class Resolution
     #[ORM\Column()]
     private ?int $id = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $resolution = null;
-
     #[ORM\OneToMany(mappedBy: 'resolution', targetEntity: DonneeSeas::class)]
     private Collection $myDonneeSeas;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $resolution = null;
 
     public function __construct()
     {
@@ -29,18 +30,6 @@ class Resolution
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getResolution(): ?string
-    {
-        return $this->resolution;
-    }
-
-    public function setResolution(string $resolution): self
-    {
-        $this->resolution = $resolution;
-
-        return $this;
     }
 
     /**
@@ -69,6 +58,18 @@ class Resolution
                 $donneeSea->setResolution(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getResolution(): ?int
+    {
+        return $this->resolution;
+    }
+
+    public function setResolution(int $resolution): self
+    {
+        $this->resolution = $resolution;
 
         return $this;
     }

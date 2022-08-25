@@ -52,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: donneeSeas::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: DonneeSeas::class)]
     private Collection $donneeSeas;
 
     public function __construct()

@@ -70,7 +70,7 @@ class AppFixtures extends Fixture
         // résolution
         for ($i=1; $i < 100; $i++) { 
             $resolution = new Resolution();
-            $resolution->setResolution(strval($i));
+            $resolution->setResolution($i);
             $manager->persist($resolution);
         }
 

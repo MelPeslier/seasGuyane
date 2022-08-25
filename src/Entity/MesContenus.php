@@ -21,9 +21,6 @@ class MesContenus
     #[ORM\Column()]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'mesContenus', targetEntity: donneeseas::class)]
-    private Collection $donnee_seas;
-
 /***************************************************************************
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
@@ -33,6 +30,9 @@ class MesContenus
 
     #[ORM\Column(type: 'string', nullable : true)]
     private ?string $imageName = null;
+
+    #[ORM\ManyToOne(inversedBy: 'mesContenuses')]
+    private ?DonneeSeas $mes_contenus = null;
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -69,44 +69,21 @@ class MesContenus
         return $this->imageName;
     }
 
-// **************************************************************
-
-    public function __construct()
-    {
-        $this->donnee_seas = new ArrayCollection();
-    }
+// *************************************************************
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, donneeseas>
-     */
-    public function getDonneeSeas(): Collection
+    public function getMesContenus(): ?DonneeSeas
     {
-        return $this->donnee_seas;
+        return $this->mes_contenus;
     }
 
-    public function addDonneeSea(donneeseas $donneeSea): self
+    public function setMesContenus(?DonneeSeas $mes_contenus): self
     {
-        if (!$this->donnee_seas->contains($donneeSea)) {
-            $this->donnee_seas[] = $donneeSea;
-            $donneeSea->setMesContenus($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDonneeSea(donneeseas $donneeSea): self
-    {
-        if ($this->donnee_seas->removeElement($donneeSea)) {
-            // set the owning side to null (unless already changed)
-            if ($donneeSea->getMesContenus() === $this) {
-                $donneeSea->setMesContenus(null);
-            }
-        }
+        $this->mes_contenus = $mes_contenus;
 
         return $this;
     }
