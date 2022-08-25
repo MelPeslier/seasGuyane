@@ -17,11 +17,11 @@
 
     {# <div id="map"></div> #}
 
-    {# {% if app.user %} #}
+    {% if app.user %}
         <h1>
             <a href="{{ path('app_catalogue_creer') }}">Créer une donnée Seas</a>
         </h1>
-    {# {% endif %} #}
+    {% endif %}
 
     {% for row in donneeSeas|batch(3) %}
     <div class="row mb-5">
@@ -30,7 +30,7 @@
                 <article class="cour bg-white rounded shadow">
                     <div class="cour mw-100 overflow-hidden rounded-top">
                         <a href=" {{ path('app_catalogue_afficher', {'id': donneeSeas.id}) }} ">
-                            <img src="{{ donneeSeas.donnee_seas }}">
+                            <img src="{{ donneeSeas.imageName ? vich_uploader_asset(donneeSeas, 'imageFile') : asset('images/placeholders/placeholder.png')}}">
                         </a>
                     </div>
                     <div class="p-3">
