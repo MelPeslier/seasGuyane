@@ -93,13 +93,8 @@ class AppFixtures extends Fixture
             
             $seasdata->addTheme($themes_array[rand(0,9)]);
             $manager->persist($seasdata);
-            
-            
-            $manager->persist($seasdata);
+
+            $manager->flush();
         }
-        
-
-
-        $manager->flush();
     }
 }
