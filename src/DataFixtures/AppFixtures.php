@@ -90,9 +90,10 @@ class AppFixtures extends Fixture
             $seasdata->setResolution('Resolution'.$i % 4);
             $seasdata->setTypeDeProduit('type-de-produit'.$i % 6);
             
-            for ($i=0; $i < rand(1, 3); $i++) {
-                $seasdata->addTheme($themes_array[rand(0, 9)]);
-            }
+        
+            $seasdata->addTheme($themes_array[rand(0, 9)]);
+            $seasdata->addTheme($themes_array[rand(0, 9)]);
+            $seasdata->addTheme($themes_array[rand(0, 9)]);
             
             $manager->persist($seasdata);
         }
