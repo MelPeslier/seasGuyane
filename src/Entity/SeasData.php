@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Vich\Uploadable]
 class SeasData
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column()]
@@ -45,7 +46,7 @@ class SeasData
     /***************************************************************************
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
-    #[Vich\UploadableField(mapping: 'cours_images', fileNameProperty: 'imageName')]
+    #[Vich\UploadableField(mapping: 'data_images', fileNameProperty: 'imageName')]
     #[Assert\Image(maxSize: "8M")]
     private ?File $imageFile = null;
 

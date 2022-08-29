@@ -9,12 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Traits\Timestampable;
 
 #[ORM\Entity(repositoryClass: ThemeRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[Vich\Uploadable]
 class Theme
 {
+    use Timestampable;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column()]
@@ -26,7 +29,7 @@ class Theme
     /***************************************************************************
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      */
-    #[Vich\UploadableField(mapping: 'cours_images', fileNameProperty: 'imageName')]
+    #[Vich\UploadableField(mapping: 'theme_images', fileNameProperty: 'imageName')]
     #[Assert\Image(maxSize: "8M")]
     private ?File $imageFile = null;
 

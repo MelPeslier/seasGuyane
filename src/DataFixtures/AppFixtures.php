@@ -3,101 +3,69 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Date;
 use Faker\Generator;
-use App\Entity\Capteur;
-use App\Entity\Echelle;
-use App\Entity\Vehicule;
-use App\Entity\Resolution;
-use App\Entity\Thematique;
-use App\Entity\Fournisseur;
-use App\Entity\VehiculeSpe;
-use App\Entity\TypeDeProduit;
+use App\Entity\Theme;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class AppFixtures extends Fixture
 {
-     private Generator $faker;
-
-    public function __construct()
+    public function __construct(UploaderHelper $uploaderHelper)
     {
-        $this->faker = Factory::create('fr_FR');
+        $this->uploaderHelper = $uploaderHelper;
     }
 
-    // // symfony console doctrine:fixtures:load --purge-with-truncate --purge-exclusions=user
+    // // symfony console doctrine:fixtures:load 
     public function load(ObjectManager $manager): void
     {
-    //     // date
-    //     for ($i=0; $i < 10000; $i++) {
-    //         $date = new Date();
-    //         $date->setDate($this->faker->unique()->date());
-    //         $manager->persist($date);
-    //     }
-    //     // echelle
-    //     for ($i=0; $i < 20; $i++) { 
-    //         $echelle = new Echelle();
-    //         $echelle->setEchelle($this->faker->unique()->numerify('echelle-##'));
-    //         $manager->persist($echelle);
-    //     }
-    //     // capteur
-    //     $capteurArray = array('Optique', 'Infrarouge', 'Radar', 'LIDAR');
-    //     foreach ($capteurArray as $value) {
-    //         $capteur = new Capteur();
-    //         $capteur->setCapteur($value);
-    //         $manager->persist($capteur);
-    //     }
+        $themes = array(
+            'Fleuve & Hydrologie',
+            'Littoral & Maritime',
+            'Forêt',
+            'Géologie',
+            'Santé',
+            'Urbanisation',
+            'Agriculture',
+            'Energie',
+            'Biodiversité',
+            'Occupation des sols',
+            'Risques'
+        );
 
-    //     // // véhicule
-    //     // $vehiculeArray = array('Satellite', 'Avion', 'Drone', 'Ballon');
-    //     // foreach ($capteurArray as $value) {
-    //     //     $vehicule = new Vehicule();
-    //     //     $vehicule->setVehicule($value);
-    //     //     $manager->persist($vehicule);
-            
-    //     //     // vehicule_spe
-    //     //     if (str_contains($value, 'Satellite')) {
-    //     //         $vehicule_speArray = array('SPOT 6/7', 'Pléiades', 'Pléiades Néo');
-    //     //         foreach ($vehicule_speArray as $value) {
-    //     //             $vehicule_spe = new VehiculeSpe();
-    //     //             $vehicule_spe->setVehiculeSpe($value);
-    //     //             $vehicule_spe->setVehicule($vehicule);
-    //     //             $manager->persist($vehicule_spe);
-    //     //         }
-    //     //     }
-    //     // }
+        foreach($themes as $value){
 
-    //     // résolution
-    //     for ($i=1; $i < 100; $i++) { 
-    //         $resolution = new Resolution();
-    //         $resolution->setResolution($i);
-    //         $manager->persist($resolution);
-    //     }
+            $src = __DIR__.'/images/themes/'.$value.'.png';
 
-    //     // fournisseur
-    //     for ($i=0; $i < 100; $i++) { 
-    //         $fournisseur = new Fournisseur();
-    //         $fournisseur->setFournisseur($this->faker->unique()->word());
-    //         $manager->persist($fournisseur);
-    //     }
+            $file = new UploadedFile(
+                $src,
+                $value.'.png',
+                filesize($src),
+                null,
+                true //  Set test mode true !!! " Local files are used in test mode hence the code should not enforce HTTP uploads."
+            );
 
-    //     // // type_de_produit
-    //     // $type_de_produitArray = array('Produit fini', 'Produit à Valeur ajoutée', 'Carte', 'Jeu de données');
-    //     // foreach ($type_de_produitArray as $value) {
-    //     //     $type_de_produit = new TypeDeProduit();
-    //     //     $type_de_produit->setTypeDeProduit($value);
-    //     //     $manager->persist($type_de_produit);
-    //     // }
+            $theme = new Theme();
+            $theme->setTheme($value);
+            $theme->setImageFile($file);
+            // $imageFilename = $this->fakeUploadImage($value);
+    
+    
+            $manager->persist($theme);
+        }
 
-    //     // // thematique
-    //     // $thematiqueArray = array('Fleuve & Hydrologie', 'Littoral & Maritime', 'Forêt', 'Géologie', 
-    //     //     'Santé', 'Urbanisation', 'Agriculture', 'Énergie', 'Biodiversité', 'Occupation des sols', 'Risques');
-    //     // foreach ($thematiqueArray as $value) {
-    //     //     $thematique = new Thematique();
-    //     //     $thematique->setThematique($value);
-    //     //     $manager->persist($thematique);
-    //     // }        
-
-    //     $manager->flush();
+        $manager->flush();
     }
+
+    // private function fakeUploadImage(String $name): string
+    // {
+    //     $fs = new Filesystem();
+    //     $targetPath = sys_get_temp_dir().'/'.$name.'.png';
+    //     $fs->copy(__DIR__.'/images/themes/'.$name.'.png', $targetPath, true);
+    //     return $this->uploaderHelper
+    //         ->uploadArticleImage(new File($targetPath));
+    // }
 }

@@ -20,7 +20,10 @@ class PedagogieController extends AbstractController
     #[Route(path: 'pedagogie', name: 'app_pedagogie', methods: ['GET'])]
     public function index(CourRepository $repo): Response
     {
-        return $this->render('pedagogie/index.html.twig', ['cours' => $repo-> findBy([], ['createdAt' => 'DESC'])]);
+        dd($repo->findAll());
+        return $this->render('pedagogie/index.html.twig', [
+            'cours' => $repo->findAll()
+        ]);
     }
 
 
