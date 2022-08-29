@@ -2,11 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\VehiculeSpe;
-use App\Form\DonneeSeasType;
-use App\Form\VehiculeSpeType;
-use App\Repository\VehiculeRepository;
-use App\Repository\DonneeSeasRepository;
+use App\Repository\SeasDataRepository;
 use App\Repository\ThemeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +17,7 @@ class CatalogueController extends AbstractController
     // *****************************************************************************************************
 
     #[Route(path: 'catalogue', name: 'app_catalogue', methods: ['GET'])]
-    public function index(ThemeRepository $repo): Response
+    public function index(SeasDataRepository $repo): Response
     {
         return $this->render('catalogue/index.html.twig', [
             'values' => $repo->findAll(),
