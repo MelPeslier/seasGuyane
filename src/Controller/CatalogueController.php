@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\DonneeSeas;
 use App\Entity\VehiculeSpe;
 use App\Form\DonneeSeasType;
 use App\Form\VehiculeSpeType;
@@ -21,11 +20,9 @@ class CatalogueController extends AbstractController
     // *****************************************************************************************************
 
     #[Route(path: 'catalogue', name: 'app_catalogue', methods: ['GET'])]
-    public function index(DonneeSeasRepository $repo, VehiculeRepository $rv): Response
+    public function index(): Response
     {
         return $this->render('catalogue/index.html.twig', [
-            'donneeSeas' => $repo -> findAll(),
-            'vehicules' => $rv -> findAll()
         ]);
     }
 
@@ -43,24 +40,8 @@ class CatalogueController extends AbstractController
     #[Route(path: 'catalogue/creer', name: 'app_catalogue_creer', methods: ['GET', 'POST'])]
     public function creer(Request $request, EntityManagerInterface $em): Response
     {
-        $ds = new DonneeSeas;
-
-        $form = $this->createForm(DonneeSeasType::class, $ds);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $ds->setUser($this->getUser());
-            $em->persist($ds);
-            $em->flush();
-
-            $this->addFlash('success','Donnée Seas créer avec succès');
-
-            return $this->redirectToRoute('app_catalogue');
-        }
 
         return $this->render('catalogue/creer.html.twig', [
-            'form' => $form->createView()
         ]);
     }
 
@@ -71,7 +52,7 @@ class CatalogueController extends AbstractController
     // *****************************************************************************************************
 
     #[Route(path: 'catalogue/{id<[0-9]+>}', name: 'app_catalogue_afficher', methods: ['GET'])]
-    public function afficher(DonneeSeas $ds): Response
+    public function afficher(): Response
     {
         return $this->render('catalogue/afficher.html.twig', compact('ds'));
     }
@@ -83,23 +64,11 @@ class CatalogueController extends AbstractController
     // *****************************************************************************************************
 
     #[Route(path: 'catalogue/{id<[0-9]+>}/modifer', name: 'app_catalogue_modifier', methods: ['GET', 'POST'])]
-    public function modifier(Request $request, DonneeSeas $ds, EntityManagerInterface $em): Response
+    public function modifier(Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(DonneeSeasType::class, $ds, []);
-        
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) { 
-            $em->flush();
-
-            $this->addFlash('success','Donnée SEAS modifier avec succès');
-
-            return $this->redirectToRoute('app_catalogue');
-        }
 
         return $this->render('catalogue/modifier.html.twig', [
-            'donneeSeas' => $ds,
-            'form' => $form->createView()
+
         ]);
     }
 
@@ -110,14 +79,9 @@ class CatalogueController extends AbstractController
     // *****************************************************************************************************
 
     #[Route(path: 'catalogue/{id<[0-9]+>}', name: 'app_catalogue_supprimer', methods: ['POST'])]
-    public function supprimer(Request $request,DonneeSeas $ds, EntityManagerInterface $em): Response
+    public function supprimer(Request $request, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('supprimer_cour_' . $ds->getId(), $request->request->get('pas_un_token_csrf'))) {
-            $em->remove($ds);
-            $em->flush();
 
-            $this->addFlash('info','Donnée SEAS supprimer avec succès');
-        }
         return $this->redirectToRoute('app_catalogue');
     }
 }

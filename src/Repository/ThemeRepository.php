@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\TypeDeProduit;
+use App\Entity\Theme;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TypeDeProduit>
+ * @extends ServiceEntityRepository<Theme>
  *
- * @method TypeDeProduit|null find($id, $lockMode = null, $lockVersion = null)
- * @method TypeDeProduit|null findOneBy(array $criteria, array $orderBy = null)
- * @method TypeDeProduit[]    findAll()
- * @method TypeDeProduit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Theme|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Theme|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Theme[]    findAll()
+ * @method Theme[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TypeDeProduitRepository extends ServiceEntityRepository
+class ThemeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TypeDeProduit::class);
+        parent::__construct($registry, Theme::class);
     }
 
-    public function add(TypeDeProduit $entity, bool $flush = false): void
+    public function add(Theme $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class TypeDeProduitRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(TypeDeProduit $entity, bool $flush = false): void
+    public function remove(Theme $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class TypeDeProduitRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return TypeDeProduit[] Returns an array of TypeDeProduit objects
+//     * @return Theme[] Returns an array of Theme objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class TypeDeProduitRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?TypeDeProduit
+//    public function findOneBySomeField($value): ?Theme
 //    {
 //        return $this->createQueryBuilder('t')
 //            ->andWhere('t.exampleField = :val')

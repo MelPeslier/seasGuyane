@@ -52,37 +52,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: DonneeSeas::class)]
-    private Collection $donneeSeas;
-
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Vehicule::class)]
-    private Collection $vehicules;
-
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: VehiculeSpe::class)]
-    private Collection $vehiculeSpes;
-
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: TypeDeProduit::class)]
-    private Collection $typeDeProduits;
-
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Thematique::class)]
-    private Collection $thematiques;
-
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: MesContenus::class)]
-    private Collection $mesContenuses;
-
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: MesThematiques::class)]
-    private Collection $mesThematiques;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SeasData::class)]
+    private Collection $seasData;
 
     public function __construct()
     {
         $this->cours = new ArrayCollection();
-        $this->donneeSeas = new ArrayCollection();
-        $this->vehicules = new ArrayCollection();
-        $this->vehiculeSpes = new ArrayCollection();
-        $this->typeDeProduits = new ArrayCollection();
-        $this->thematiques = new ArrayCollection();
-        $this->mesContenuses = new ArrayCollection();
-        $this->mesThematiques = new ArrayCollection();
+        $this->seasData = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,209 +198,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, donneeSeas>
+     * @return Collection<int, SeasData>
      */
-    public function getDonneeSeas(): Collection
+    public function getSeasData(): Collection
     {
-        return $this->donneeSeas;
+        return $this->seasData;
     }
 
-    public function addDonneeSea(donneeSeas $donneeSea): self
+    public function addSeasData(SeasData $seasData): self
     {
-        if (!$this->donneeSeas->contains($donneeSea)) {
-            $this->donneeSeas[] = $donneeSea;
-            $donneeSea->setUser($this);
+        if (!$this->seasData->contains($seasData)) {
+            $this->seasData[] = $seasData;
+            $seasData->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeDonneeSea(donneeSeas $donneeSea): self
+    public function removeSeasData(SeasData $seasData): self
     {
-        if ($this->donneeSeas->removeElement($donneeSea)) {
+        if ($this->seasData->removeElement($seasData)) {
             // set the owning side to null (unless already changed)
-            if ($donneeSea->getUser() === $this) {
-                $donneeSea->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Vehicule>
-     */
-    public function getVehicules(): Collection
-    {
-        return $this->vehicules;
-    }
-
-    public function addVehicule(Vehicule $vehicule): self
-    {
-        if (!$this->vehicules->contains($vehicule)) {
-            $this->vehicules[] = $vehicule;
-            $vehicule->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVehicule(Vehicule $vehicule): self
-    {
-        if ($this->vehicules->removeElement($vehicule)) {
-            // set the owning side to null (unless already changed)
-            if ($vehicule->getUser() === $this) {
-                $vehicule->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, VehiculeSpe>
-     */
-    public function getVehiculeSpes(): Collection
-    {
-        return $this->vehiculeSpes;
-    }
-
-    public function addVehiculeSpe(VehiculeSpe $vehiculeSpe): self
-    {
-        if (!$this->vehiculeSpes->contains($vehiculeSpe)) {
-            $this->vehiculeSpes[] = $vehiculeSpe;
-            $vehiculeSpe->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVehiculeSpe(VehiculeSpe $vehiculeSpe): self
-    {
-        if ($this->vehiculeSpes->removeElement($vehiculeSpe)) {
-            // set the owning side to null (unless already changed)
-            if ($vehiculeSpe->getUser() === $this) {
-                $vehiculeSpe->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TypeDeProduit>
-     */
-    public function getTypeDeProduits(): Collection
-    {
-        return $this->typeDeProduits;
-    }
-
-    public function addTypeDeProduit(TypeDeProduit $typeDeProduit): self
-    {
-        if (!$this->typeDeProduits->contains($typeDeProduit)) {
-            $this->typeDeProduits[] = $typeDeProduit;
-            $typeDeProduit->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTypeDeProduit(TypeDeProduit $typeDeProduit): self
-    {
-        if ($this->typeDeProduits->removeElement($typeDeProduit)) {
-            // set the owning side to null (unless already changed)
-            if ($typeDeProduit->getUser() === $this) {
-                $typeDeProduit->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Thematique>
-     */
-    public function getThematiques(): Collection
-    {
-        return $this->thematiques;
-    }
-
-    public function addThematique(Thematique $thematique): self
-    {
-        if (!$this->thematiques->contains($thematique)) {
-            $this->thematiques[] = $thematique;
-            $thematique->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeThematique(Thematique $thematique): self
-    {
-        if ($this->thematiques->removeElement($thematique)) {
-            // set the owning side to null (unless already changed)
-            if ($thematique->getUser() === $this) {
-                $thematique->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, MesContenus>
-     */
-    public function getMesContenuses(): Collection
-    {
-        return $this->mesContenuses;
-    }
-
-    public function addMesContenus(MesContenus $mesContenus): self
-    {
-        if (!$this->mesContenuses->contains($mesContenus)) {
-            $this->mesContenuses[] = $mesContenus;
-            $mesContenus->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMesContenus(MesContenus $mesContenus): self
-    {
-        if ($this->mesContenuses->removeElement($mesContenus)) {
-            // set the owning side to null (unless already changed)
-            if ($mesContenus->getUser() === $this) {
-                $mesContenus->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, MesThematiques>
-     */
-    public function getMesThematiques(): Collection
-    {
-        return $this->mesThematiques;
-    }
-
-    public function addMesThematique(MesThematiques $mesThematique): self
-    {
-        if (!$this->mesThematiques->contains($mesThematique)) {
-            $this->mesThematiques[] = $mesThematique;
-            $mesThematique->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMesThematique(MesThematiques $mesThematique): self
-    {
-        if ($this->mesThematiques->removeElement($mesThematique)) {
-            // set the owning side to null (unless already changed)
-            if ($mesThematique->getUser() === $this) {
-                $mesThematique->setUser(null);
+            if ($seasData->getUser() === $this) {
+                $seasData->setUser(null);
             }
         }
 
