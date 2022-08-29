@@ -17,10 +17,12 @@ class CatalogueController extends AbstractController
     // *****************************************************************************************************
 
     #[Route(path: 'catalogue', name: 'app_catalogue', methods: ['GET'])]
-    public function index(SeasDataRepository $repo): Response
+    public function index(SeasDataRepository $repo, ThemeRepository $repo_theme): Response
     {
         return $this->render('catalogue/index.html.twig', [
-            'values' => $repo->findAll(),
+            'values' => $repo->findAll()
+            // ,
+            // 'themes' => $repo_theme->findAll()
         ]);
     }
 
