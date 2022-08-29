@@ -63,7 +63,7 @@ class AppFixtures extends Fixture
             array_push($themes_array, $theme);
         }
 
-
+        $manager->flush();
 
         /*****************************************************************
          * seasdata
@@ -90,10 +90,10 @@ class AppFixtures extends Fixture
             $seasdata->setResolution('Resolution'.$i % 4);
             $seasdata->setTypeDeProduit('type-de-produit'.$i % 6);
             
-            for ($i=0; $i < 3; $i++) {
-                $seasdata->addTheme($themes_array[rand(0,9)]);
-                $manager->persist($seasdata);
-            }
+            
+            $seasdata->addTheme($themes_array[rand(0,9)]);
+            $manager->persist($seasdata);
+            
             
             $manager->persist($seasdata);
         }
