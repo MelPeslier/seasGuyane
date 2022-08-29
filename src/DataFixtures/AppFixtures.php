@@ -92,6 +92,7 @@ class AppFixtures extends Fixture
             
             for ($i=1; $i < rand(2,9); $i++) {
                 $seasdata->addTheme($themes_array[rand(0,9)]);
+                $manager->persist($seasdata);
             }
             
             $manager->persist($seasdata);
