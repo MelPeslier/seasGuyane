@@ -65,11 +65,11 @@ class AppFixtures extends Fixture
          */
         for ($i=1; $i < 11; $i++) {
             
-            $src = __DIR__.'/images/sat/sat'.$i.'.png';
+            $src = __DIR__.'/images/sat/sat'.$i.'.jpg';
             
             $file = new UploadedFile(
                 $src,
-                $i.'.png',
+                'sat'.$i.'.jpg',
                 filesize($src),
                 null,
                 true //  Set test mode true !!! " Local files are used in test mode hence the code should not enforce HTTP uploads."
