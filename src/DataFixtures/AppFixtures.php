@@ -23,37 +23,8 @@ class AppFixtures extends Fixture
     // // symfony console doctrine:fixtures:load 
     public function load(ObjectManager $manager): void
     {
-        /*****************************************************************
-         * seasdata
-         */
-        for ($i=1; $i < 11; $i++) {
-            
-            $src = __DIR__.'/images/sat/sat'.$i.'.jpg';
-            
-            $file = new UploadedFile(
-                $src,
-                'sat'.$i.'.jpg',
-                filesize($src),
-                null,
-                true //  Set test mode true !!! " Local files are used in test mode hence the code should not enforce HTTP uploads."
-            );
-            
-            $seasdata = new SeasData();
-            $seasdata->setImageFile($file);
-            $seasdata->setDate($this->faker->dateTimeThisYear());
-            $seasdata->setFournisseur($this->faker->words(3, true));
-            $seasdata->setEchelle('echelle-'.$i % 2);
-            $seasdata->setCapteur('capteur-'.$i % 3);
-            $seasdata->setVehicule('vehicule-'.$i % 2);
-            $seasdata->setResolution('Resolution'.$i % 4);
-            $seasdata->setTypeDeProduit('type-de-produit'.$i % 6);
-            
-            for ($i=1; $i < rand(1,11); $i++) {
-                $seasdata->addTheme($manager->find('Theme' ,rand(1,11)));
-            }
-            
-            $manager->persist($seasdata);
-        }
+        $themes_array = array();
+
         /*****************************************************************
          * themes
          */
@@ -82,15 +53,52 @@ class AppFixtures extends Fixture
                 null,
                 true //  Set test mode true !!! " Local files are used in test mode hence the code should not enforce HTTP uploads."
             );
-
+            
             $theme = new Theme();
             $theme->setTheme($value);
             $theme->setImageFile($file);
             
             $manager->persist($theme);
+
+            array_push($themes_array, $theme);
         }
 
+
+
+        /*****************************************************************
+         * seasdata
+         */
+        for ($i=1; $i < 11; $i++) {
+            
+            $src = __DIR__.'/images/sat/sat'.$i.'.jpg';
+            
+            $file = new UploadedFile(
+                $src,
+                'sat'.$i.'.jpg',
+                filesize($src),
+                null,
+                true //  Set test mode true !!! " Local files are used in test mode hence the code should not enforce HTTP uploads."
+            );
+            
+            $seasdata = new SeasData();
+            $seasdata->setImageFile($file);
+            $seasdata->setDate($this->faker->dateTimeThisYear());
+            $seasdata->setFournisseur($this->faker->words(3, true));
+            $seasdata->setEchelle('echelle-'.$i % 2);
+            $seasdata->setCapteur('capteur-'.$i % 3);
+            $seasdata->setVehicule('vehicule-'.$i % 2);
+            $seasdata->setResolution('Resolution'.$i % 4);
+            $seasdata->setTypeDeProduit('type-de-produit'.$i % 6);
+            
+            for ($i=1; $i < rand(2,9); $i++) {
+                $seasdata->addTheme($themes_array[rand(0,9)]);
+            }
+            
+            $manager->persist($seasdata);
+        }
         
+
+
         $manager->flush();
     }
 }
