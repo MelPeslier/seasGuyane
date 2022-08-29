@@ -16,20 +16,34 @@
 {% block body %}
 
     {# <div id="map"></div> #}
-
+    <br>
+    <br>
+    {% for row in themes|batch(6) %}
+        <div class="row">
+        {% for theme in row %}
+            <div class="col-md-2 ">
+                <h4 class="text-break text-center text-white"><img src="{{ theme.imageName ? vich_uploader_asset(theme, 'imageFile') : asset('images/placeholders/placeholder.png')}}">
+                {{ theme.theme }}
+                </h4>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+    <br>
+    <br>
     {% for row in values|batch(3) %}
     <div class="row mb-5">
         {% for value in row %}
             <div class="col-md-4 mb-5">
                 <article class="cour bg-white rounded shadow">
                     <div class="cour mw-100 overflow-hidden rounded-top">
-                        <a href=" {#{{ path('app_catalogue_afficher', {'id': value.id}) }}#} ">
+                        <a href=" {{ path('app_catalogue_afficher', {'id': value.id}) }} ">
                             <img src="{{ value.imageName ? vich_uploader_asset(value, 'imageFile') : asset('images/placeholders/placeholder.png')}}">
                         </a>
                     </div>
                     <div class="p-3">
-                        {# <h2 class="text-break"><a href=" {{ path('app_catalogue_afficher', {'id': value.id}) }} ">{{ donneeSeas.donnee_seas() }}</a></h2> #}
-                        <p class="text-break">{{ value.fournisseur }}</p>
+                        <h2 class="text-break"><a href=" {{ path('app_catalogue_afficher', {'id': value.id}) }} ">{{ value.titre }}</a></h2>
+                        <p class="text-break">{{ value.description|u.truncate(140) }}...</p>
                     </div>
                 </article>
             </div>

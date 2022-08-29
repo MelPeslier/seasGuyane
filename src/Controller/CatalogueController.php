@@ -20,9 +20,8 @@ class CatalogueController extends AbstractController
     public function index(SeasDataRepository $repo, ThemeRepository $repo_theme): Response
     {
         return $this->render('catalogue/index.html.twig', [
-            'values' => $repo->findAll()
-            // ,
-            // 'themes' => $repo_theme->findAll()
+            'values' => $repo->findAll(),
+            'themes' => $repo_theme->findAll()
         ]);
     }
 
